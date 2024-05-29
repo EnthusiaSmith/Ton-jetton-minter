@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box } from "@mui/material";
 import { AppButton } from "components/appButton";
 import { Popup } from "components/Popup";
@@ -12,7 +12,6 @@ import {
   PopupLink,
   PopupTitle,
 } from "components/editLogoPopup/styled";
-import { useJettonLogo } from "hooks/useJettonLogo";
 
 interface EditLogoPopupProps {
   showPopup: boolean;
@@ -27,21 +26,14 @@ export const EditLogoPopup = ({
   showExample,
   close,
 }: EditLogoPopupProps) => {
-  const { jettonLogo, setLogoUrl } = useJettonLogo();
   const [tempUrl, setTempUrl] = useState("");
-  const [inputFocus, setInputFocus] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   useAutosizeTextArea(textAreaRef.current, tempUrl);
 
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = evt.target?.value;
-
     setTempUrl(val);
   };
-
-  useEffect(() => {
-    setTempUrl(jettonLogo.logoUrl);
-  }, [showPopup]);
 
   return (
     <Popup open={showPopup} onClose={close} maxWidth={644}>
@@ -51,8 +43,6 @@ export const EditLogoPopup = ({
           <LogoTextAreaWrapper>
             <LogoTextArea
               spellCheck={false}
-              onFocus={() => setInputFocus(true)}
-              onBlur={() => setInputFocus(false)}
               value={tempUrl}
               onChange={handleChange}
               ref={textAreaRef}
@@ -86,7 +76,6 @@ export const EditLogoPopup = ({
             fontWeight={700}
             type="button"
             onClick={() => {
-              setLogoUrl(tempUrl);
               close();
             }}
             background="#0088CC">

@@ -1,7 +1,7 @@
 import useNotification from "hooks/useNotification";
 import { useForm } from "react-hook-form";
 import { Box, Tooltip, useMediaQuery } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AppButton } from "components/appButton";
 import { CenteringWrapper } from "components/header/headerSearchBar/styled";
 import { EditLogoPopup } from "components/editLogoPopup";
@@ -63,10 +63,6 @@ export function Form({
     showNotification(<>{firstError.message}</>, "warning", undefined, 3000);
   };
 
-  const onExampleClick = useCallback((name: never, value: never) => {
-    setValue(name, value);
-  }, []);
-
   const closeEditLogoPopup = useCallback(() => setEditLogoPopup(false), []);
 
   const closeAlertLogoPopup = useCallback(() => setLogoAlertPopup(false), []);
@@ -76,7 +72,7 @@ export function Form({
   useEffect(() => {
     //@ts-ignore
     setValue("tokenImage", jettonLogo.logoUrl);
-  }, [jettonLogo.logoUrl]);
+  }, [jettonLogo.logoUrl, setValue]);
 
   return (
     <StyledForm
@@ -168,7 +164,7 @@ export function Form({
                 control={control}
                 label={spec.label}
                 defaultValue={spec.default || ""}
-                onExampleClick={() => onExampleClick(spec.name as never, spec.default as never)}
+                onExampleClick={() => {}}
                 disabled={spec.disabled}
                 errorMessage={spec.errorMessage}
                 validate={spec.validate}

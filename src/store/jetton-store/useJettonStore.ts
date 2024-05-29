@@ -8,7 +8,7 @@ import { useCallback } from "react";
 import useNotification from "hooks/useNotification";
 import { getUrlParam, isValidAddress } from "utils";
 import { useJettonAddress } from "hooks/useJettonAddress";
-import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
+import { useTonAddress } from "@tonconnect/ui-react";
 
 function useJettonStore() {
   const [state, setState] = useRecoilState(jettonStateAtom);

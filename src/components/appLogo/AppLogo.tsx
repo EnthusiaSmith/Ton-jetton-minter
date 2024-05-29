@@ -1,7 +1,6 @@
-import { Chip, Typography } from "@mui/material";
-import { APP_DISPLAY_NAME, ROUTES } from "consts";
-import logo from "assets/icons/logo.svg";
-import { LogoWrapper, ImageWrapper } from "./styled";
+import { Chip } from "@mui/material";
+import { ROUTES } from "consts";
+import { LogoWrapper } from "./styled";
 import { useNetwork } from "lib/hooks/useNetwork";
 import { useNavigatePreserveQuery } from "lib/hooks/useNavigatePreserveQuery";
 

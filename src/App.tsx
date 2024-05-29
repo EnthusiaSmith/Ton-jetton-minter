@@ -5,10 +5,8 @@ import { APP_GRID, ROUTES } from "consts";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { DeployerPage, Jetton } from "pages";
 import analytics from "services/analytics";
-import { Footer } from "components/footer";
 import { Header } from "components/header";
 import { useJettonLogo } from "hooks/useJettonLogo";
-import useNotification from "hooks/useNotification";
 
 analytics.init();
 
@@ -17,13 +15,6 @@ const AppWrapper = styled(Box)(() => ({
   flexDirection: "column",
   height: "100vh",
   overflowY: "scroll",
-}));
-
-const FooterBox = styled(Box)(() => ({
-  display: "flex",
-  flex: 1,
-  alignItems: "flex-end",
-  justifyContent: "center",
 }));
 
 const ScreensWrapper = styled(Box)({
@@ -55,11 +46,7 @@ export const EnvContext = createContext({
 });
 
 const PageNotFound = () => {
-  const { showNotification } = useNotification();
-
-  useEffect(() => {
-    showNotification("Page not found", "error");
-  }, []);
+  useEffect(() => {}, []);
 
   return <Box />;
 };
@@ -83,7 +70,7 @@ const App = () => {
 
   useEffect(() => {
     resetJetton();
-  }, [location.pathname]);
+  }, [location.pathname, resetJetton]);
 
   return (
     <AppWrapper>

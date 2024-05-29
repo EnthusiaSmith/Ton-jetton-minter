@@ -1,14 +1,7 @@
-import { Box, Drawer, IconButton, styled } from "@mui/material";
-import githubIcon from "assets/icons/github-logo.svg";
+import { Drawer, styled } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { AppLogo } from "components/appLogo";
-import {
-  CloseMenuButton,
-  DrawerContent,
-  StyledGithubIcon,
-  AppMenu,
-  HeaderTypography,
-} from "./styled";
+import { CloseMenuButton, DrawerContent, AppMenu } from "./styled";
 import { TonConnectButton } from "@tonconnect/ui-react";
 
 interface MenuProps {

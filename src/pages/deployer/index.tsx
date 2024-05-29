@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Address } from "ton";
-import { Box, Fade, Link, Typography } from "@mui/material";
+import { Box, Fade } from "@mui/material";
 import { jettonDeployController, JettonDeployParams } from "lib/deploy-controller";
 import WalletConnection from "services/wallet-connection";
 import { createDeployParams } from "lib/utils";
@@ -8,19 +8,12 @@ import { ContractDeployer } from "lib/contract-deployer";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { ROUTES } from "consts";
 import useNotification from "hooks/useNotification";
-import {
-  FormWrapper,
-  ScreenHeading,
-  StyledDescription,
-  StyledTxLoaderContent,
-  SubHeadingWrapper,
-} from "./styles";
+import { FormWrapper, ScreenHeading, SubHeadingWrapper } from "./styles";
 import { Screen, ScreenContent } from "components/Screen";
 import analytics, { AnalyticsAction, AnalyticsCategory } from "services/analytics";
 import { getUrlParam, toDecimalsBN } from "utils";
 import { offchainFormSpec, onchainFormSpec } from "./data";
 import { Form } from "components/form";
-import { GithubButton } from "pages/deployer/githubButton";
 import { useNavigatePreserveQuery } from "lib/hooks/useNavigatePreserveQuery";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 
@@ -132,77 +125,3 @@ function DeployerPage() {
 }
 
 export { DeployerPage };
-
-const Spacer = () => {
-  return <aside style={{ height: 25 }}></aside>;
-};
-
-function Description() {
-  return (
-    <StyledDescription sx={{ padding: 3 }}>
-      <Typography
-        variant="h5"
-        mb={3}
-        sx={{
-          color: "#161C28",
-          fontSize: 20,
-          fontWeight: 800,
-        }}>
-        This is an open source tool
-      </Typography>
-      <Typography
-        sx={{
-          fontWeight: 400,
-          color: "#728A96",
-          "& a": {
-            textDecoration: "none",
-            fontWeight: 500,
-          },
-        }}>
-        Jetton is the fungible{" "}
-        <Link
-          target="_blank"
-          href="https://github.com/ton-blockchain/TEPs/blob/master/text/0074-jettons-standard.md">
-          token standard
-        </Link>{" "}
-        for{" "}
-        <Link target="_blank" href="https://ton.org">
-          TON blockchain
-        </Link>
-        . This free educational tool allows you to deploy your own Jetton to mainnet in one click.
-        You will need at least 0.25 TON for deployment fees. <br />
-        <Spacer />
-        For detailed instructions and in-depth explanations of all fields please see the{" "}
-        <Link
-          target="_blank"
-          href="https://github.com/ton-blockchain/minter-contract#jetton-metadata-field-best-practices">
-          GitHub README
-        </Link>
-        . It includes several best practice recommendations so please take a look.
-        <Spacer />
-        Never deploy code that you've never seen before! This deployer is fully open source with all
-        smart contract code{" "}
-        <Link target="_blank" href="https://github.com/ton-blockchain/minter-contract">
-          available here
-        </Link>
-        . The HTML form is also{" "}
-        <Link target="_blank" href="https://github.com/ton-blockchain/minter">
-          open source
-        </Link>{" "}
-        and served from{" "}
-        <Link target="_blank" href="https://github.com/ton-blockchain/minter">
-          GitHub Pages
-        </Link>
-        . <Spacer />
-        Is this deployer safe? Yes! Read{" "}
-        <Link
-          target="_blank"
-          href="https://github.com/ton-blockchain/minter-contract#protect-yourself-and-your-users">
-          this
-        </Link>{" "}
-        to understand why.
-      </Typography>
-      <GithubButton />
-    </StyledDescription>
-  );
-}

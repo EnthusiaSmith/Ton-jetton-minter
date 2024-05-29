@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { PopupTitle } from "components/editLogoPopup/styled";
 import { Box, Typography } from "@mui/material";
 import { SearchBarInput } from "components/header/headerSearchBar/styled";
@@ -7,7 +7,6 @@ import { Popup } from "components/Popup";
 import { isValidAddress } from "utils";
 import { useSearchParams } from "react-router-dom";
 import useNotification from "hooks/useNotification";
-import useJettonStore from "store/jetton-store/useJettonStore";
 
 interface CheckWalletBalancePopupProps {
   showPopup: boolean;
@@ -18,7 +17,6 @@ export const CheckWalletBalancePopup = ({ showPopup, close }: CheckWalletBalance
   const [search, setSearch] = useState<string>("");
   const [params, setParams] = useSearchParams();
   const { showNotification } = useNotification();
-  const { getJettonDetails } = useJettonStore();
 
   const searchForWallet = useCallback(() => {
     if (isValidAddress(search)) {
@@ -29,11 +27,7 @@ export const CheckWalletBalancePopup = ({ showPopup, close }: CheckWalletBalance
     } else {
       showNotification("Wallet address in invalid", "error");
     }
-  }, [search]);
-
-  useEffect(() => {
-    getJettonDetails();
-  }, [params]);
+  }, [search, close, params, setParams, showNotification]);
 
   return (
     <Popup
